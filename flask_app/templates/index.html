@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Authors</title>
+</head>
+<body>
+    <div class="d-flex justify-content-evenly">
+        <div class="mt-4 col-3">
+            <h3 class="ms-2 mt-4">New Author</h3>
+            <div class="d-flex mt-4 ms-2">
+                <p>Name:</p>
+                <div>
+                    <form action="/author/create" method="post">
+                        <label for="name"></label>
+                        <input class="ms-4" type="text" name="name"><br>
+                        <input class="btn btn-dark mt-4 ms-4" type="submit" value="Create">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-2 mt-4">
+            <h3 class="ms-2">All Authors</h3>
+            <div class="bg-light bg-gradient border border-dark rounded form-control">
+                {% for author in all_authors %}
+                    <div>
+                        <a class="form-control" href="/author/{{author.id}}">{{author.name}}</a>
+                    </div>
+                {% endfor %}
+            </div>
+            <a class="ms-2 mt-3 btn btn-outline-dark" href="/books">Add Book</a>
+        </div>
+
+    </div>
+</body>
+</html>

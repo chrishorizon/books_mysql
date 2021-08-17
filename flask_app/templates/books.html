@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Books</title>
+</head>
+<body>
+    <div class="d-flex justify-content-evenly">
+        <div class="mt-4">
+            <h3>New Book</h3>
+            <div class="d-flex mt-4">
+                <div>
+                    <p>Title:</p>
+                    <p>Number of pages:</p>
+                </div>
+                <div class="mb-5 ms-5">
+                    <form action="/create/book" method="post">
+                        <label for="title"></label>
+                        <input class="mb-3" type="text" name="title"><br>
+                        <label for="num_of_pages"></label>
+                        <input class="mb-3" type="text" name="num_of_pages"><br>
+                        <input class="btn btn-dark" type="submit" value="Create">
+                    </form>
+                </div>
+            </div>
+            <a class="btn btn-outline-info mt-5" href="/authors">Home</a>
+        </div>
+
+        <div class="col-2 mt-4">
+            <h3>All Books</h3>
+            {% for book in all_books %}
+                <div class="bg-light form-control">
+                    <a href="/book/{{book.id}}">{{book.title}}</a>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Authors Page</title>
+</head>
+<body>
+    <div class="container d-flex justify-content-evenly mt-4">
+        <div>
+            <h3>{{author.name}}'s Favorites</h3>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th># of pages</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in author.favorite_books %}
+                    <tr>
+                        <td>{{b.title}}</td>
+                        <td>{{b.num_of_pages}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a class="btn btn-outline-info" href="/authors">Home</a>
+        </div>
+
+        <div>
+            <h3>Add Author's Favorite</h3>
+            <div class="d-flex mt-4">
+                <p>Book:</p>
+                <div class="">
+                    <form action="/join/book" method="post">
+                        <input type="hidden" value="{{author.id}}" name="author_id">
+                        <label for="book_id"></label>
+                        <select name="book_id" class="ms-5 btn btn-secondary dropdown-toggle">br
+                            {% for a in unfavorited_book %}
+                                <option value="{{a.id}}">{{a.title}}</option>
+                            {% endfor %}
+                        </select>
+                        <p><input class="ms-5 mt-4 btn btn-dark" type="submit" value="Add Book"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
